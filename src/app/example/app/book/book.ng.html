@@ -1,0 +1,30 @@
+<br/>
+<br/>
+<strong>This is the page for the Book example.</strong><br/>
+<p>This example demonstrates the basic usage for the Dynamic Form Field library.
+</p>
+<ul>
+  <li> description field has "fieldWidth:2"
+  </li>
+  <li>
+    vertical layout with "vertical" css class
+  </li>
+</ul>
+<!-- All your dynamic form fields need to be nested inside a `<form>` tag. -->
+<form gdfEntityCtx="book" [inst]="inst" #entityCtx="entityContextDirective"
+ (ngSubmit)="submit()" class="vertical">
+  <ng-container *ngFor="let propertyName of props" [gdfPropCtx]="propertyName"
+                [entity]="entityCtx.entity" #propertyCtx="propContextDirective">
+    <!-- Here you use `<gdf-prop>` instead of `<input>` etc. to construct a form control. -->
+    <gdf-prop [prop]="propertyCtx.prop" [inst]="inst"></gdf-prop>
+  </ng-container>
+  <div>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+  <div>
+    <br/>
+    Book instance value:
+    <br/>
+    <p>{{inst | json}}</p>
+  </div>
+</form>

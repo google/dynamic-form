@@ -1,0 +1,6 @@
+<ng-container [gdfEntityCtx]="entity" [inst]="inst" #entityCtx="entityContextDirective" >
+  <ng-container *ngFor="let prop of props">
+    <gdf-prop [prop]="prop" [inst]="inst"
+            [ngClass]="[prop.name, prop.controlType,prop.type]"></gdf-prop>
+  </ng-container>
+</ng-container>

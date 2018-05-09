@@ -1,0 +1,49 @@
+<span  [ngClass]="propClasses" [ngSwitch]="prop.type">
+
+  <ng-container *ngSwitchCase="'text'">
+    <span class="label" *ngIf="showLabel">
+      {{prop.label}}:
+    </span>
+    <span class="value" [ngSwitch]="prop.controlType">
+      <ng-container *ngSwitchCase="'date'">
+        {{value | date:format}}
+      </ng-container>
+      <ng-container *ngSwitchCase="'datetime-local'">
+        {{value | date:format}}
+      </ng-container>
+      <ng-container *ngSwitchCase="'number'">
+        {{value | number:format}}
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        {{value}}
+      </ng-container>
+    </span>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'autocomplete'">
+    <span class="label" *ngIf="showLabel">
+      {{prop.label}}:
+    </span>
+    <span class="value">
+      {{value?.description}}
+    </span>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'select'">
+    <span class="label" *ngIf="showLabel">
+      {{prop.label}}:
+    </span>
+    <span class="value">
+      {{value?.description}}
+    </span>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'checkbox'">
+    <span class="label" *ngIf="showLabel">
+      {{prop.label}}:
+    </span>
+    <span class="value">
+      {{value?'Yes':'No'}}
+    </span>
+  </ng-container>
+</span>

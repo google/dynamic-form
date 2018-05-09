@@ -1,0 +1,4 @@
+<ng-container *ngFor="let prop of props">
+    <gdf-prop-viewer [prop]="prop" [inst]="inst" [showLabel]="showLabel"
+          [ngClass]="['prop', prop.name, prop.controlType,prop.type]"></gdf-prop-viewer>
+  </ng-container>

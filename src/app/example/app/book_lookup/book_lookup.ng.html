@@ -1,0 +1,87 @@
+<br/>
+<br/>
+<strong>This is an example HTML page for Book (Lookup version) entity.</strong>
+<br/>
+<p>This example demonstrates the
+  <span style="color: red; font-weight: bold">Lookup</span>
+  usage for the Dynamic Form Field library.</p>
+<p>
+  <span style="font-weight: bold">Note: </span>If you go back to the basic book example, you would notice that for property "Currency", it's just a free
+  text input.</p>
+<p>However, in real world, there are limited kinds of currency, for example USD, EUR, etc. In this case, you would need a drop
+  down to list all kinds of currency. And here our Lookup comes into play.</p>
+<p>Also, you gonna find out there is a new field "Country", which demonstrates the usage of Lookup as an enhancement.</p>
+<br/>
+
+<mat-tab-group class="demo-tab-group">
+  <mat-tab label="Instances Table view">
+    <table cellspacing="0" cellpadding="0">
+      <caption>
+        Five instances to to be show as table. This is preferred since it
+        support accessbility well.
+      </caption>
+      <thead>
+        <tr>
+          <th *ngFor="let propName of props" class="label propname" [ngClass]="[propName]">{{propName}}</th>
+          <th class="label propname">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of insts">
+          <td *ngFor="let propName of props" [gdfPropCtx]="propName" entityName="book1" #propContext="propContextDirective">
+            <gdf-prop-viewer [inst]="book" [prop]="propContext.prop" [showLabel]="false"></gdf-prop-viewer>
+          </td>
+          <td>
+            <button mat-raised-button color="primary" (click)="inst=book; instEditor.reset();">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <mat-tab label="Instances Css Grid view">
+    <h3>
+        Five instance to to be show css grid. May nto be good for accessbility
+    </h3>
+    <section class="bookgrid">
+        <div *ngFor="let propName of props" class="label propname" [ngClass]="[propName]">{{propName}}</div>
+        <div class="label propname">Action</div>
+        <ng-container *ngFor="let book of insts">
+          <ng-container *ngFor="let propName of props"[gdfPropCtx]="propName" entityName="book1" #propContext="propContextDirective">
+            <div><gdf-prop-viewer [inst]="book" [prop]="propContext.prop" [showLabel]="false"></gdf-prop-viewer></div>
+          </ng-container>
+          <div><button mat-raised-button color="primary" (click)="inst=book; instEditor.reset();">Edit</button>          </div>
+        </ng-container>
+    </section>
+  </mat-tab>
+
+  <mat-tab label="List 5 instances">
+    <h3>Five instance to to be show as list view</h3>
+    <div>
+      <div class="book head">
+        <span *ngFor="let propName of props" class="label propname" [ngClass]="[propName]">{{propName}}</span>
+        <span class="label propname">Action</span>
+      </div>
+      <div class="book" *ngFor="let book of insts">
+        <inst-viewer entityName="book1" [inst]="book" [showLabel]="false" class="horizontal"></inst-viewer>
+        <button mat-raised-button color="primary" (click)="inst=book; instEditor.reset();">Edit</button>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="One instance">
+    <h3>Single Instance with label</h3>
+    <div>
+      <inst-viewer entityName="book1" [inst]="insts[0]" [showLabel]="true"
+      class="full horizontal"></inst-viewer>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+
+<form #form="ngForm">
+  <inst-editor entityName="book1" [propNames]=props [inst]="inst" #instEditor></inst-editor>
+  <div>
+    <button mat-raised-button color="primary" (click)="instEditor.pushValueToInstance();" [disabled]="form.invalid">Add</button>
+  </div>
+</form>

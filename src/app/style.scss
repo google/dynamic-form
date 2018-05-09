@@ -1,0 +1,85 @@
+// Define some convenient class which can be used by client
+$red: #f00;
+$prop-gap: 20px;
+
+// Copied from matrial source code
+$mat-form-field-default-infix-width: 180px !default;
+
+select {
+  width: $mat-form-field-default-infix-width;
+}
+
+// ----------------------Property editor ----------------
+gdf-prop {
+  display: inline-block;
+  margin-right: $prop-gap;
+
+  //control show and hide
+  &.hide {
+    display: none;
+  }
+
+  div.mat-form-field-label.required::after {
+    content: '*';
+    color: $red;
+  }
+
+  mat-form-field.prop {
+
+    //for required property
+    &.required mat-placeholder::after {
+      content: '*';
+      color: $red;
+    }
+
+    //default width
+    .mat-form-field-infix {
+      width: $mat-form-field-default-infix-width;
+    }
+
+    //twice width
+    &.field-width-2 .mat-form-field-infix {
+      width: $mat-form-field-default-infix-width * 2 + $prop-gap;
+    }
+
+    //trip width
+    &.field-width-3 .mat-form-field-infix {
+      width: $mat-form-field-default-infix-width * 3 + $prop-gap * 2;
+    }
+  }
+   //control with for toggle
+  div.mat-form-field-label.prop {
+    display: block;
+    position: static;
+    width: $mat-form-field-default-infix-width;
+  }
+}
+
+// property editor is listed by default horizontally, we give a class
+//convenient class so that it can be listed vertically
+.vertical gdf-prop {
+  display: block;
+}
+
+//----------------------- property viewer
+// Label is viewed with two rows: label and value
+.full > gdf-prop-viewer > span.prop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+ }
+
+gdf-prop-viewer {
+  display: block;
+  margin-right: $prop-gap;
+}
+
+//-- property viewer is layed out horizontally
+.horizontal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.horizontal  gdf-prop-viewer {
+  display: block;
+}

@@ -1,0 +1,45 @@
+inst-viewer {
+  background-color: lightblue;
+  margin: 5px;
+}
+inst-viewer::ng-deep gdf-prop-viewer {
+  min-width: 100px;
+  margin: 5px 10px 5px 0px;
+}
+
+span.propname {
+  min-width:100px;
+  margin: 5px 10px 5px 0px;
+
+}
+inst-viewer::ng-deep gdf-prop-viewer.description, span.propname.description {
+  width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+div.book {
+  display: flex;
+}
+div.book.head {
+  margin: 5px;
+}
+
+th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 0px 5px 0px 5px;
+}
+
+
+section.bookgrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr repeat(6, 1fr);
+}
+section.bookgrid > div {
+  border: 2px solid #ffa94d;
+}
+section.bookgrid > div.propname {
+  font-weight: bold;
+}
