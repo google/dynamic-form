@@ -3,19 +3,15 @@
  */
 import {Injectable} from '@angular/core';
 
-import {SimpleValueSetterGetter} from '../../../inst_service';
-import {AnyType, BaseLookupValue, Entity, NULL_VALUE, Prop, ShowHideContext} from '../../../meta_datamodel';
-import {assert} from '../../../repositories';
-import {NameValueLookupSource, NameValueLookupValue} from '../../../repositories';
+import {SimpleValueSetterGetter} from '../../../lib/src/inst_service';
+import {AnyType, Entity, Prop, ShowHideContext} from '../../../lib/src/meta_datamodel';
 
-import {BookLookup} from './book_lookup_sample';
+import {Book} from './book_sample';
 
-export const BOOK_LOOKUP_ENTITY_NAME = 'book1';
-// Lookup source name for Book entity.
-export const BOOK_LOOKUP_SRC = 'book';
+export const BOOK_ENTITY_NAME = 'book';
 
-export const BOOK_LOOKUP_ENTITY = {
-  name: 'book1',
+export const BOOK_ENTITY = {
+  name: 'book',
   props: [
     new Prop({
       name: 'name',
@@ -60,28 +56,13 @@ export const BOOK_LOOKUP_ENTITY = {
     }),
     new Prop({
       name: 'currency',
-      // Modified the type from 'text' to 'select'.
-      type: 'select',
+      type: 'text',
       dataType: 'STRING',
       label: 'Price Currency',
+      minLength: 3,
       isRequired: true,
       editable: true,
       viewable: true,
-      // Use 'lookupName' and 'lookupSrc' to find the correct lookup.
-      lookupName: 'currency',
-      lookupSrc: BOOK_LOOKUP_SRC,
-    }),
-    // Added new property 'country' to demonstrate Lookup usage.
-    new Prop({
-      name: 'country',
-      type: 'select',
-      dataType: 'STRING',
-      label: 'Country',
-      isRequired: false,
-      editable: true,
-      viewable: true,
-      lookupName: 'country',
-      lookupSrc: BOOK_LOOKUP_SRC,
     }),
     new Prop({
       name: 'isAvailable',
@@ -94,7 +75,7 @@ export const BOOK_LOOKUP_ENTITY = {
     {
       srcProp: 'isAvailable',
       srcValue: 'true',
-      target: 'amount',
+      target: 'price',
       show: true,
       type: ShowHideContext.TYPE,
       skipFirstTime: false,
@@ -103,17 +84,15 @@ export const BOOK_LOOKUP_ENTITY = {
 };
 
 /**
- * Getter and setter for a BookLookup instance.
- * The same as Book example.
+ * Getter and setter for a Book instance.
  */
 @Injectable()
-export class BookLookupValueSetterGetter extends
-    SimpleValueSetterGetter<BookLookup> {
+export class BookValueSetterGetter extends SimpleValueSetterGetter<Book> {
   /**
    * Indicates whether can handle the passed entity or not.
    */
   canHandle(entity: Entity): boolean {
-    return entity.name === BOOK_LOOKUP_ENTITY_NAME;
+    return entity.name === BOOK_ENTITY_NAME;
   }
 
   /**
@@ -121,10 +100,10 @@ export class BookLookupValueSetterGetter extends
    * This is just a simple implementation to get value from instance.
    * In real production, the scenario and implementation can be complex.
    */
-  get(inst: BookLookup, prop: Prop): AnyType {
+  get(inst: Book, prop: Prop): AnyType {
     switch (prop.name) {
-        // Handles property 'amount' and 'currency' differently, since they do
-        // not match the structure of instance.
+      // Handles property 'amount' and 'currency' differently, since they do not
+      // match the structure of instance.
       case 'amount':
         return inst.price.amount;
       case 'currency':
@@ -138,7 +117,7 @@ export class BookLookupValueSetterGetter extends
   /**
    * Sets value to instance.
    */
-  set(inst: BookLookup, prop: Prop, value: AnyType): void {
+  set(inst: Book, prop: Prop, value: AnyType): void {
     if (!value) {
       return;
     }
@@ -146,7 +125,9 @@ export class BookLookupValueSetterGetter extends
     switch (prop.name) {
       case 'amount':
         const amount = Number(value);
-        // No need to validate the type since UI would give a proper value.
+        if (isNaN(amount)) {
+          throw new Error('The price amount input is not valid!');
+        }
         inst.price.amount = amount;
         break;
       case 'currency':

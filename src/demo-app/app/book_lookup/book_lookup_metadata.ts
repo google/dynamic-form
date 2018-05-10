@@ -3,15 +3,19 @@
  */
 import {Injectable} from '@angular/core';
 
-import {SimpleValueSetterGetter} from '../../../inst_service';
-import {AnyType, Entity, Prop, ShowHideContext} from '../../../meta_datamodel';
+import {SimpleValueSetterGetter} from '../../../lib/src/inst_service';
+import {AnyType, BaseLookupValue, Entity, NULL_VALUE, Prop, ShowHideContext} from '../../../lib/src/meta_datamodel';
+import {assert} from '../../../lib/src/repositories';
+import {NameValueLookupSource, NameValueLookupValue} from '../../../lib/src/repositories';
 
-import {Book} from './book_sample';
+import {BookLookup} from './book_lookup_sample';
 
-export const BOOK_ENTITY_NAME = 'book';
+export const BOOK_LOOKUP_ENTITY_NAME = 'book1';
+// Lookup source name for Book entity.
+export const BOOK_LOOKUP_SRC = 'book';
 
-export const BOOK_ENTITY = {
-  name: 'book',
+export const BOOK_LOOKUP_ENTITY = {
+  name: 'book1',
   props: [
     new Prop({
       name: 'name',
@@ -56,13 +60,28 @@ export const BOOK_ENTITY = {
     }),
     new Prop({
       name: 'currency',
-      type: 'text',
+      // Modified the type from 'text' to 'select'.
+      type: 'select',
       dataType: 'STRING',
       label: 'Price Currency',
-      minLength: 3,
       isRequired: true,
       editable: true,
       viewable: true,
+      // Use 'lookupName' and 'lookupSrc' to find the correct lookup.
+      lookupName: 'currency',
+      lookupSrc: BOOK_LOOKUP_SRC,
+    }),
+    // Added new property 'country' to demonstrate Lookup usage.
+    new Prop({
+      name: 'country',
+      type: 'select',
+      dataType: 'STRING',
+      label: 'Country',
+      isRequired: false,
+      editable: true,
+      viewable: true,
+      lookupName: 'country',
+      lookupSrc: BOOK_LOOKUP_SRC,
     }),
     new Prop({
       name: 'isAvailable',
@@ -75,7 +94,7 @@ export const BOOK_ENTITY = {
     {
       srcProp: 'isAvailable',
       srcValue: 'true',
-      target: 'price',
+      target: 'amount',
       show: true,
       type: ShowHideContext.TYPE,
       skipFirstTime: false,
@@ -84,15 +103,17 @@ export const BOOK_ENTITY = {
 };
 
 /**
- * Getter and setter for a Book instance.
+ * Getter and setter for a BookLookup instance.
+ * The same as Book example.
  */
 @Injectable()
-export class BookValueSetterGetter extends SimpleValueSetterGetter<Book> {
+export class BookLookupValueSetterGetter extends
+    SimpleValueSetterGetter<BookLookup> {
   /**
    * Indicates whether can handle the passed entity or not.
    */
   canHandle(entity: Entity): boolean {
-    return entity.name === BOOK_ENTITY_NAME;
+    return entity.name === BOOK_LOOKUP_ENTITY_NAME;
   }
 
   /**
@@ -100,10 +121,10 @@ export class BookValueSetterGetter extends SimpleValueSetterGetter<Book> {
    * This is just a simple implementation to get value from instance.
    * In real production, the scenario and implementation can be complex.
    */
-  get(inst: Book, prop: Prop): AnyType {
+  get(inst: BookLookup, prop: Prop): AnyType {
     switch (prop.name) {
-      // Handles property 'amount' and 'currency' differently, since they do not
-      // match the structure of instance.
+        // Handles property 'amount' and 'currency' differently, since they do
+        // not match the structure of instance.
       case 'amount':
         return inst.price.amount;
       case 'currency':
@@ -117,7 +138,7 @@ export class BookValueSetterGetter extends SimpleValueSetterGetter<Book> {
   /**
    * Sets value to instance.
    */
-  set(inst: Book, prop: Prop, value: AnyType): void {
+  set(inst: BookLookup, prop: Prop, value: AnyType): void {
     if (!value) {
       return;
     }
@@ -125,9 +146,7 @@ export class BookValueSetterGetter extends SimpleValueSetterGetter<Book> {
     switch (prop.name) {
       case 'amount':
         const amount = Number(value);
-        if (isNaN(amount)) {
-          throw new Error('The price amount input is not valid!');
-        }
+        // No need to validate the type since UI would give a proper value.
         inst.price.amount = amount;
         break;
       case 'currency':

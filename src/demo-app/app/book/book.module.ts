@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
-import {DynamicFormModule} from '../../../dynamic_form_module';
-import {PropValueSetterGetters} from '../../../inst_service';
-import {Entity} from '../../../meta_datamodel';
-import {EntityMetaDataRepository} from '../../../repositories';
+import {DynamicFormModule} from '../../../lib/src/dynamic_form_module';
+import {PropValueSetterGetters} from '../../../lib/src/inst_service';
+import {Entity} from '../../../lib/src/meta_datamodel';
+import {EntityMetaDataRepository} from '../../../lib/src/repositories';
 
 import {BookComponent} from './book';
 import {BOOK_ENTITY, BookValueSetterGetter} from './book_metadata';

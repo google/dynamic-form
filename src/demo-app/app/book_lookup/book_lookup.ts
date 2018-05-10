@@ -1,7 +1,7 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {DefaultInstPopulater} from '../../../inst_service';
-import {Entity} from '../../../meta_datamodel';
-import {EntityMetaDataRepository} from '../../../repositories';
+import {DefaultInstPopulater} from '../../../lib/src/inst_service';
+import {Entity} from '../../../lib/src/meta_datamodel';
+import {EntityMetaDataRepository} from '../../../lib/src/repositories';
 
 import {BOOK_LOOKUP_ENTITY_NAME} from './book_lookup_metadata';
 import {BookLookup} from './book_lookup_sample';

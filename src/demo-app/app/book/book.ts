@@ -1,9 +1,9 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 
-import {DefaultInstPopulater} from '../../../inst_service';
-import {Entity} from '../../../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../../../prop_component';
-import {EntityMetaDataRepository} from '../../../repositories';
+import {DefaultInstPopulater} from '../../../lib/src/inst_service';
+import {Entity} from '../../../lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../../../lib/src/prop_component';
+import {EntityMetaDataRepository} from '../../../lib/src/repositories';
 
 import {BOOK_ENTITY_NAME} from './book_metadata';
 import {Book} from './book_sample';

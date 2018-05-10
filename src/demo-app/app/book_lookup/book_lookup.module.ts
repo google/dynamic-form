@@ -3,10 +3,10 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatTabsModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
-import {DynamicFormModule} from '../../../dynamic_form_module';
-import {PropValueSetterGetters} from '../../../inst_service';
-import {Entity} from '../../../meta_datamodel';
-import {EntityMetaDataRepository, LookupSources, NameValueLookupSource, NameValueLookupValue} from '../../../repositories';
+import {DynamicFormModule} from '../../../lib/src/dynamic_form_module';
+import {PropValueSetterGetters} from '../../../lib/src/inst_service';
+import {Entity} from '../../../lib/src/meta_datamodel';
+import {EntityMetaDataRepository, LookupSources, NameValueLookupSource, NameValueLookupValue} from '../../../lib/src/repositories';
 
 import {BookLookupComponent} from './book_lookup';
 import {BOOK_LOOKUP_ENTITY, BOOK_LOOKUP_SRC, BookLookupValueSetterGetter} from './book_lookup_metadata';

@@ -1,2 +1,7 @@
 # ignore node files
 /node_modules/
+
+# build files
+/build/
+/dist/
+
