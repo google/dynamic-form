@@ -24,3 +24,15 @@ npm run build:lib
 ``` shell
 npm start
 ```
+
+6. If you want to run test cases.
+
+``` shell
+npm run test
+```
+
+7. If you want to run e2e test cases.
+
+``` shell
+npm run e2e
+```
