@@ -1,11 +1,12 @@
 import {ChangeDetectorRef, Component, ElementRef, Injector, Input, OnInit,} from '@angular/core';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
 
 import {PropValueSetterGetters} from './inst_service';
 import {AnyType, BaseLookupValue, Entity, Prop} from './meta_datamodel';
 import {LookupSources} from './repositories';
 import {AutoCompleteLookupService, EntityMetaDataRepository} from './repositories';
 
+const moment = moment_;
 /**
  * Viewer component for property
  *
@@ -36,7 +37,6 @@ export class DynamicFieldPropertyViewerComponent implements OnInit {
 
   /**
    * css classes
-   * @type {[string]}
    */
   propClasses = ['prop'];
 

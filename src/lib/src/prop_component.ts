@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Injector, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ControlContainer, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
 import {Subscription} from 'rxjs';
 
 import {PropValueSetterGetters} from './inst_service';
@@ -8,6 +8,7 @@ import {AnyType, BaseLookupValue, Entity, Prop} from './meta_datamodel';
 import {assert} from './repositories';
 import {AutoCompleteLookupService, EntityMetaDataRepository, LookupSources} from './repositories';
 
+const moment = moment_;
 /**
  * Editor component for property
  *
@@ -42,7 +43,6 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
 
   /**
    * css classes
-   * @type {[string]}
    */
   propClasses = ['prop'];
   /**

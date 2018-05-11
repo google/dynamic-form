@@ -4,4 +4,7 @@
 # build files
 /build/
 /dist/
+/.ng_pkg_build
 
+# IDEs
+/.vscode/
