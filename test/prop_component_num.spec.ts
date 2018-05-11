@@ -2,10 +2,10 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, Prop} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, Prop} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository} from '../src/lib/src/repositories';
 
 
 /**
@@ -71,15 +71,14 @@ describe('NumberInput', () => {
         .toEqual(String(comp.inst[entity.props[0].name]));
   });
 
-  it('value is pushed to control',
-     async () => {
-       setInputValue('.prop1 input', '5');
-       await fixture.whenStable();
-       const propComp =
-           fixture.debugElement.query(By.css('gdf-prop')).componentInstance as
-           DynamicFieldPropertyComponent;
-       expect(propComp.control.value).toEqual('5');
-     });
+  it('value is pushed to control', async () => {
+    setInputValue('.prop1 input', '5');
+    await fixture.whenStable();
+    const propComp =
+        fixture.debugElement.query(By.css('gdf-prop')).componentInstance as
+        DynamicFieldPropertyComponent;
+    expect(propComp.control.value).toEqual('5');
+  });
 
   it('min', async () => {
     setInputValue('.prop1 input', '2');

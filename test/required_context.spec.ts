@@ -2,11 +2,10 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository, LookupSources} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository, LookupSources} from '../src/lib/src/repositories';
 
 import {ExampleLookupSrc} from './example_lookupsrc';
 
@@ -31,7 +30,6 @@ export class TestHostComponent {
 }
 
 describe('RequiredContext', () => {
-
   let comp: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 
@@ -163,7 +161,6 @@ describe('RequiredContext', () => {
          expect(dfComp.required).toBeFalsy();
          expect(dfComp.propClasses.indexOf('required'))
              .not.toBeGreaterThanOrEqual(0);
-
        });
      }));
 

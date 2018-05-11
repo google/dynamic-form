@@ -3,10 +3,10 @@ import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/t
 import {MatSlideToggle} from '@angular/material';
 import {By} from '@angular/platform-browser';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedShowHideContext, ShowHideContext} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository, LookupSources} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedShowHideContext, ShowHideContext} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository, LookupSources} from '../src/lib/src/repositories';
 
 import {ExampleLookupSrc} from './example_lookupsrc';
 
@@ -35,7 +35,6 @@ export class TestHostComponent {
 }
 
 describe('SegmentedShowHideContext', () => {
-
   let comp: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 

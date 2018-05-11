@@ -1,6 +1,6 @@
-import {AnyType, BaseLookupValue, NULL_VALUE} from '../meta_datamodel';
-import {assert} from '../repositories';
-import {LookupSource} from '../repositories';
+import {AnyType, BaseLookupValue, NULL_VALUE} from '../src/lib/src/meta_datamodel';
+import {assert} from '../src/lib/src/repositories';
+import {LookupSource} from '../src/lib/src/repositories';
 
 export class ExampleLookupValue extends BaseLookupValue {
   code: string;

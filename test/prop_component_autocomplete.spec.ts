@@ -3,10 +3,10 @@ import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testi
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {InstEditorComponent} from '../inst_editor';
-import {AnyType, BaseLookupValue, Entity, Prop} from '../meta_datamodel';
-import {AutoCompleteLookupService, EntityMetaDataRepository} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {InstEditorComponent} from '../src/lib/src/inst_editor';
+import {AnyType, BaseLookupValue, Entity, Prop} from '../src/lib/src/meta_datamodel';
+import {AutoCompleteLookupService, EntityMetaDataRepository} from '../src/lib/src/repositories';
 
 export class Product extends BaseLookupValue {
   uri: {resourcePath: string, serviceName: string};

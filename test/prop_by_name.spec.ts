@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, Prop} from '../meta_datamodel';
-import {EntityMetaDataRepository} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, Prop} from '../src/lib/src/meta_datamodel';
+import {EntityMetaDataRepository} from '../src/lib/src/repositories';
 
 /**
  * Host component to test prop_component.ts

@@ -1,13 +1,14 @@
 import {Component, DebugElement} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
+import * as moment_ from 'moment';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {InstEditorComponent} from '../inst_editor';
-import {Entity, Prop} from '../meta_datamodel';
-import {EntityMetaDataRepository} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {InstEditorComponent} from '../src/lib/src/inst_editor';
+import {Entity, Prop} from '../src/lib/src/meta_datamodel';
+import {EntityMetaDataRepository} from '../src/lib/src/repositories';
 
-
+const moment = moment_;
 /**
  * Host component to test prop_component.ts
  */

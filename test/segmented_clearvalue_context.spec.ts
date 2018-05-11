@@ -3,10 +3,10 @@ import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/t
 import {By} from '@angular/platform-browser';
 
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedClearValueContext, SegmentedRequiredContext} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository, LookupSources} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedClearValueContext, SegmentedRequiredContext} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository, LookupSources} from '../src/lib/src/repositories';
 
 import {ExampleLookupSrc} from './example_lookupsrc';
 
@@ -30,7 +30,6 @@ export class TestHostComponent {
 }
 
 describe('SegmentedClearValueContext', () => {
-
   let comp: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 
@@ -223,7 +222,6 @@ describe('SegmentedClearValueContext', () => {
          el = fixture.debugElement.query(By.css('mat-form-field.prop8 input'))
                   .nativeElement as HTMLInputElement;
          expect(el.value).toEqual('value8');
-
        });
      }));
 

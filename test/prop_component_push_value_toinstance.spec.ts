@@ -2,14 +2,16 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {MatOption, MatSelect} from '@angular/material';
 import {By} from '@angular/platform-browser';
+import * as moment_ from 'moment';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {DisableContext, Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, RestrictLookupContext} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository, LookupSources} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {DisableContext, Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, RestrictLookupContext} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository, LookupSources} from '../src/lib/src/repositories';
 
 import {ExampleLookupSrc, ExampleLookupValue} from './example_lookupsrc';
 
+const moment = moment_;
 /**
  * Host component to test prop_component.ts
  */

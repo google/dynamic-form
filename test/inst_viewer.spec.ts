@@ -3,10 +3,10 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedClearValueContext, SegmentedRequiredContext} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository, LookupSources} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, NOTNULL_VALUE, NULL_VALUE, Prop, RequiredContext, SegmentedClearValueContext, SegmentedRequiredContext} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository, LookupSources} from '../src/lib/src/repositories';
 
 import {ExampleLookupSrc} from './example_lookupsrc';
 

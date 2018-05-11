@@ -3,10 +3,10 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatSlideToggle} from '@angular/material';
 import {By} from '@angular/platform-browser';
 
-import {DynamicFormModule} from '../dynamic_form_module';
-import {Entity, Prop} from '../meta_datamodel';
-import {DynamicFieldPropertyComponent} from '../prop_component';
-import {EntityMetaDataRepository} from '../repositories';
+import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
+import {Entity, Prop} from '../src/lib/src/meta_datamodel';
+import {DynamicFieldPropertyComponent} from '../src/lib/src/prop_component';
+import {EntityMetaDataRepository} from '../src/lib/src/repositories';
 
 /**
  * Host component to test prop_component.ts
@@ -30,7 +30,6 @@ export class TestHostComponent {
 }
 
 describe('BooleanInput', () => {
-
   let comp: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 
@@ -76,6 +75,4 @@ describe('BooleanInput', () => {
     fixture.debugElement.query(By.css('input')).nativeElement.click();
     expect(toggler.checked).not.toBeTruthy();
   });
-
-
 });
