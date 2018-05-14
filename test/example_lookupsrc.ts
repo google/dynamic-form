@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {AnyType, BaseLookupValue, NULL_VALUE} from '../src/lib/src/meta_datamodel';
 import {assert} from '../src/lib/src/repositories';
 import {LookupSource} from '../src/lib/src/repositories';
