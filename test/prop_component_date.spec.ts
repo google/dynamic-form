@@ -16,6 +16,7 @@
 
 import {Component, DebugElement} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 import * as moment_ from 'moment';
 
@@ -83,7 +84,7 @@ describe('DateInput', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 

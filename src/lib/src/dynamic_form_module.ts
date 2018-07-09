@@ -19,7 +19,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatIconModule, MatInputModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSlideToggleModule, MatTooltipModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {DisableContext, RequiredContext, RestrictLookupContext, SegmentedClearValueContext, SegmentedRequiredContext, SegmentedShowHideContext, SetValueContext, ShowHideContext} from './/meta_datamodel';
 import {EntityContextDirective, PropContextDirective} from './entity_directives';
@@ -35,7 +34,6 @@ import {EntityMetaDataRepository, LookupSources} from './repositories';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -90,7 +88,6 @@ import {EntityMetaDataRepository, LookupSources} from './repositories';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,

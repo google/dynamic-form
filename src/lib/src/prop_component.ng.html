@@ -1,16 +1,22 @@
 <ng-container [ngSwitch]="prop.type">
   <ng-container *ngSwitchCase="'text'">
     <mat-form-field [ngClass]="propClasses" floatLabel="always">
-      <input matInput [formControl]="control" [type]="prop.controlType" [disabled]="disabled">
-      <mat-placeholder>{{prop.label}} </mat-placeholder>
+      <input matInput [formControl]="control" [type]="prop.controlType" [disabled]="disabled"
+      [attr.min]="minForInput" [attr.max]="maxForInput"
+      [required]="required">
+      <mat-label>{{prop.label}}
+        <span class="sr-only" *ngIf="required">Required
+        </span>
+        <span aria-hidden="true" class="required" *ngIf="required">*</span>
+      </mat-label>
       <!-- use ng-template syntax here
       mat-error doesn't work together with *ngIf -->
       <ng-template [ngIf]="control.dirty && control.invalid">
         <mat-error>
           <strong *ngIf="control.hasError('pattern')">{{prop.regExpErrorMsg?prop.regExpErrorMsg:"Value must match pattern: "+prop.regExp}}</strong>
-          <strong *ngIf="control.hasError('required')">required</strong>
-          <strong *ngIf="control.hasError('min')">min value: {{prop.min}}</strong>
-          <strong *ngIf="control.hasError('max')">max value: {{prop.max}}</strong>
+          <strong *ngIf="control.hasError('required')">{{prop.name}} is a required field</strong>
+          <strong *ngIf="control.hasError('min')">minimal allowed value: {{prop.min}}</strong>
+          <strong *ngIf="control.hasError('max')">maximal allowed value: {{prop.max}}</strong>
           <strong *ngIf="control.hasError('minlength')">Must have at least {{prop.minLength}} characters</strong>
           <strong *ngIf="control.hasError('maxlength')">Can have {{prop.maxLength}} characters at maximum</strong>
         </mat-error>
@@ -20,13 +26,23 @@
   </ng-container>
   <ng-container *ngSwitchCase="'autocomplete'">
     <mat-form-field [ngClass]="propClasses" floatLabel="always">
-      <input matInput [formControl]="control" type="text" [disabled]="disabled"  [matAutocomplete]="auto">
-      <mat-placeholder>{{prop.label}} </mat-placeholder>
+      <input matInput [formControl]="control" type="text" [disabled]="disabled"  [matAutocomplete]="auto" [required]="required">
+      <mat-label>{{prop.label}}
+        <span class="sr-only" *ngIf="required">Required
+        </span>
+        <span aria-hidden="true" class="required" *ngIf="required">*</span>
+      </mat-label>
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let lookup of autoLookupValues" [value]="lookup">
           {{ lookup.description }}
         </mat-option>
       </mat-autocomplete>
+      <mat-error *ngIf="control.dirty && control.hasError('required')">
+        <strong>{{prop.name}} is a required field</strong>
+      </mat-error>
+      <mat-error *ngIf="control.dirty && control.hasError('requiredSelect')">
+        <strong>Please select a value from dropdown</strong>
+      </mat-error>
     </mat-form-field>
   </ng-container>
 
@@ -35,7 +51,9 @@
     <!--
     restore this after mat-select support accessibility
     mat-form-field floatLabel="always" [ngClass]="propClasses">
-      <mat-select [formControl]="control" [compareWith]="compareWith" [disabled]="disabled">
+      <mat-select [formControl]="control" [compareWith]="compareWith"
+      [attr.aria-required]="required"
+      [disabled]="disabled">
         <mat-option *ngIf="!required">
           None
         </mat-option>
@@ -43,18 +61,27 @@
           {{ lookup.description }}
         </mat-option>
       </mat-select>
-      <mat-placeholder>{{prop.label}}</mat-placeholder>
+      <mat-label>{{prop.label}}
+       <span class="sr-only" *ngIf="required">Required
+        </span>
+        <span aria-hidden="true" class="required" *ngIf="required">*</span>
+      </mat-label>
       <mat-error *ngIf="control.hasError('required')">
         <strong>required</strong>
       </mat-error>
     </mat-form-field -->
     <div [ngClass]="propClasses" class="mat-form-field-label">
-      <label [attr.for]="prop.label">{{prop.label}}</label>
+      <label [attr.for]="prop.label">{{prop.label}}
+        <span class="sr-only" *ngIf="required">Required
+        </span>
+        <span aria-hidden="true" class="required" *ngIf="required">*</span>
+      </label>
     </div>
     <select  [formControl]="control"
              [compareWith]="compareWith"
              [disabled]="disabled"
              [matTooltip]="prop.label"
+             [attr.aria-required]="required"
              matTooltipPosition="above"
              [attr.id]="prop.label">
       <option [ngValue]="emptyLookupValue">
@@ -65,6 +92,9 @@
         {{lookupValue.description}}
       </option>
     </select>
+    <mat-error *ngIf="control.dirty && control.hasError('required')">
+      <strong>{{prop.name}} is a required field</strong>
+    </mat-error>
   </ng-container>
 
   <ng-container *ngSwitchCase="'checkbox'">

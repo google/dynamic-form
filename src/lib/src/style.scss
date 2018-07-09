@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 // Define some convenient class which can be used by client
-$red: #f00;
+$red: #a2180b;
 $prop-gap: 20px;
 
 // Copied from matrial source code
@@ -35,16 +34,14 @@ gdf-prop {
     display: none;
   }
 
-  div.mat-form-field-label.required::after {
-    content: '*';
+  div.mat-form-field-label.required span.required {
     color: $red;
   }
 
   mat-form-field.prop {
 
     //for required property
-    &.required mat-placeholder::after {
-      content: '*';
+    &.required mat-label span.required {
       color: $red;
     }
 
@@ -98,4 +95,13 @@ gdf-prop-viewer {
 
 .horizontal  gdf-prop-viewer {
   display: block;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

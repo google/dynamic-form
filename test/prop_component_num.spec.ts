@@ -16,6 +16,7 @@
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 
 import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
@@ -65,7 +66,7 @@ describe('NumberInput', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 
@@ -105,7 +106,7 @@ describe('NumberInput', () => {
     de = fixture.debugElement.query(By.css('gdf-prop.prop1 mat-error'));
     expect(de).not.toBeNull();
     el = de.nativeElement as HTMLElement;
-    expect(el.textContent).toContain('min value: 3');
+    expect(el.textContent).toContain('minimal allowed value: 3');
   });
 
   it('max', testasync(async () => {
@@ -116,7 +117,7 @@ describe('NumberInput', () => {
        de = fixture.debugElement.query(By.css('gdf-prop.prop1 mat-error'));
        expect(de).not.toBeNull();
        el = de.nativeElement as HTMLElement;
-       expect(el.textContent).toContain('max value: 10');
+       expect(el.textContent).toContain('maximal allowed value: 10');
      }));
 
   function setInputValue(selector: string, value: string) {

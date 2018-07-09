@@ -8,7 +8,7 @@
   "keywords": [
     "angular"
   ],
-  "license": "MIT",
+  "license": "Apache 2",
   "main": "./bundles/dynamic-form.umd.js",
   "es2015": "./esm2015/dynamic-form.js",
   "module": "./esm5/dynamic-form.es5.js",

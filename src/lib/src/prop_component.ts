@@ -15,7 +15,7 @@
  */
 
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Injector, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ControlContainer, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, ControlContainer, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import * as moment_ from 'moment';
 import {Subscription} from 'rxjs';
 
@@ -84,9 +84,12 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
     description: 'none',
   };
 
+  minForInput = Number.NEGATIVE_INFINITY;
+  maxForInput = Number.POSITIVE_INFINITY;
+
   private _show = true;
   private internalLookups: BaseLookupValue[];
-  private _required = false;
+  private internalRequired = false;
   private subscription = new Subscription();
   private autoCompleteService: AutoCompleteLookupService;
 
@@ -136,10 +139,10 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
     value ? this.control.disable() : this.control.enable();
   }
   get required() {
-    return this._required;
+    return this.internalRequired;
   }
   set required(required: boolean) {
-    if (required === this._required) {
+    if (required === this.internalRequired) {
       return;
     }
     if (required) {
@@ -151,7 +154,7 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
       }
     }
 
-    this._required = required;
+    this.internalRequired = required;
     this.control.clearValidators();
     this.control.setValidators(this.buildValidators());
     this.control.updateValueAndValidity();
@@ -165,7 +168,7 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
       this.propName = this.prop.name;
       this.entityName = this.prop.entity.name;
     }
-    this._required = this.prop.isRequired;
+    this.internalRequired = this.prop.isRequired;
     if (this.prop.type === 'autocomplete') {
       // run before buildControl. buildControl uses this.
       this.setupAutocomplete();
@@ -194,6 +197,13 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
       } else if (this.parent.control instanceof FormArray) {
         (this.parent.control as FormArray).push(this.control);
       }
+    }
+
+    if (this.prop.min !== undefined) {
+      this.minForInput = Number(this.prop.min);
+    }
+    if (this.prop.max !== undefined) {
+      this.maxForInput = Number(this.prop.max);
     }
 
     /*
@@ -237,8 +247,13 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
                   .lookupValueToPropValue(value as BaseLookupValue);
     }
     if (this.prop.type === 'autocomplete' && this.autoCompleteService) {
-      value = this.autoCompleteService.lookupValueToPropValue(
-          value as BaseLookupValue);
+      if (typeof value === 'string') {
+        // if value is string, it is user typed, not selected value
+        value = null;
+      } else {
+        value = this.autoCompleteService.lookupValueToPropValue(
+            value as BaseLookupValue);
+      }
     }
     value = this.toTypedValue(value);
     this.propValueSetterGetters.getSetterGetterForProp(this.prop).set(
@@ -251,6 +266,9 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
       return value;
     }
     if (this.prop.dataType === 'NUMBER') {
+      if (value === '') {
+        return null;
+      }
       return Number(value);
     }
 
@@ -341,8 +359,14 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
   }
   protected buildValidators() {
     const validators = new Array<ValidatorFn>();
-    if (this._required) {
+    if (this.internalRequired) {
       validators.push(Validators.required);
+    }
+    if (this.internalRequired && this.prop.type === 'select') {
+      validators.push(this.getDropdownRequiredValidatorFn());
+    }
+    if (this.internalRequired && this.prop.type === 'autocomplete') {
+      validators.push(this.getDropdownRequiredValidatorFnForAutoComplete());
     }
     if (this.prop.min !== undefined) {
       validators.push(Validators.min(this.prop.min));
@@ -400,5 +424,19 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
           }
           this.cd.detectChanges();
         }));
+  }
+
+  getDropdownRequiredValidatorFn() {
+    return (c: AbstractControl) => {
+      return (c.value === this.emptyLookupValue) ? {'required': true} : null;
+    };
+  }
+
+  getDropdownRequiredValidatorFnForAutoComplete() {
+    return (c: AbstractControl) => {
+      return (typeof c.value === 'string' && c.value) ?
+          {'requiredSelect': true} :
+          null;
+    };
   }
 }

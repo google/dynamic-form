@@ -16,6 +16,7 @@
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatOption, MatSelect} from '@angular/material';
 import {By} from '@angular/platform-browser';
 
@@ -77,7 +78,7 @@ describe('DefaultInstPopulater', () => {
 
   // configure
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [DynamicFormModule]});
+    TestBed.configureTestingModule({imports: [DynamicFormModule, NoopAnimationsModule]});
 
     // initialize meta data
     TestBed.get(EntityMetaDataRepository).registerMetaData(entity);

@@ -16,6 +16,7 @@
 
 import {Component, Injectable, ViewChild} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
@@ -186,7 +187,7 @@ describe('AutoCompleteTest', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 

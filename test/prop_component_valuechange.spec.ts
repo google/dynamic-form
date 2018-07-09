@@ -16,6 +16,7 @@
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 
 
@@ -66,7 +67,7 @@ describe('ValueChange', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 

@@ -16,6 +16,7 @@
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async as testasync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 
 import {DynamicFormModule} from '../src/lib/src/dynamic_form_module';
@@ -138,7 +139,7 @@ describe('SegmentedClearValueContextSKipFirstTime', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 

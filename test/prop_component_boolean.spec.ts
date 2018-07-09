@@ -16,6 +16,7 @@
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSlideToggle} from '@angular/material';
 import {By} from '@angular/platform-browser';
 
@@ -60,7 +61,7 @@ describe('BooleanInput', () => {
   // configure
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormModule],
+      imports: [DynamicFormModule, NoopAnimationsModule],
       declarations: [TestHostComponent],
     });
 
