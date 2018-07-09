@@ -42,6 +42,9 @@ export class EntityMetaDataRepository {
   getEntity(name: string): Entity {
     return assert(this.entities.get(name));
   }
+  hasEntity(name: string): boolean {
+    return this.entities.has(name);
+  }
 }
 
 /**

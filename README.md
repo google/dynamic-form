@@ -8,7 +8,7 @@
 3. Download npm dependencies.
 
 ``` shell
-git clone sso://team/dynamicform/dynamic-form
+git clone https://github.com/google/dynamic-form.git
 cd dynamic-form
 npm install
 ```
