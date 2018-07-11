@@ -8,3 +8,9 @@
 
 # IDEs
 /.vscode/
+
+/.idea/
+
+*.iml
+
+/src/demo-app/node_modules/

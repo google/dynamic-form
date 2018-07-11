@@ -1,6 +1,6 @@
 {
-  "name": "dynamic-form",
-  "version": "0.0.0",
+  "name": "angular-dynamic-form",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +11,7 @@
     "build:lib": "ng-packagr -p src/lib/package.json",
     "version": "sync-json -v --property version --source package.json src/lib/package.json"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^6.0.0",
     "@angular/cdk": "^6.0.1",
@@ -22,6 +22,7 @@
     "@angular/http": "^6.0.0",
     "@angular/material": "^6.0.1",
     "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser/animations": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "core-js": "^2.5.4",

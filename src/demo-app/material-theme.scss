@@ -29,3 +29,5 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 // Include all theme-styles for the components based on the current theme.
 @include angular-material-theme($theme);
+
+@import '../lib/src/style.scss';
