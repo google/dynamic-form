@@ -19,6 +19,7 @@
           <strong *ngIf="control.hasError('max')">maximal allowed value: {{prop.max}}</strong>
           <strong *ngIf="control.hasError('minlength')">Must have at least {{prop.minLength}} characters</strong>
           <strong *ngIf="control.hasError('maxlength')">Can have {{prop.maxLength}} characters at maximum</strong>
+          <strong *ngIf="control.hasError('email')">Email is not valud</strong>
         </mat-error>
       </ng-template>
 
