@@ -381,6 +381,9 @@ export class DynamicFieldPropertyComponent implements OnInit, OnDestroy {
     if (this.prop.maxLength !== undefined) {
       validators.push(Validators.maxLength(this.prop.maxLength));
     }
+    if (this.prop.controlType === 'email') {
+      validators.push(Validators.email);
+    }
     if (this.prop.regExp) {
       validators.push(Validators.pattern(this.prop.regExp));
     }
