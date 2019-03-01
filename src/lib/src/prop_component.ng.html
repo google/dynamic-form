@@ -9,10 +9,7 @@
         </span>
         <span aria-hidden="true" class="required" *ngIf="required">*</span>
       </mat-label>
-      <!-- use ng-template syntax here
-      mat-error doesn't work together with *ngIf -->
-      <ng-template [ngIf]="control.dirty && control.invalid">
-        <mat-error>
+      <mat-error *ngIf="control.dirty && control.invalid">
           <strong *ngIf="control.hasError('pattern')">{{prop.regExpErrorMsg?prop.regExpErrorMsg:"Value must match pattern: "+prop.regExp}}</strong>
           <strong *ngIf="control.hasError('required')">{{prop.name}} is a required field</strong>
           <strong *ngIf="control.hasError('min')">minimal allowed value: {{prop.min}}</strong>
@@ -20,9 +17,7 @@
           <strong *ngIf="control.hasError('minlength')">Must have at least {{prop.minLength}} characters</strong>
           <strong *ngIf="control.hasError('maxlength')">Can have {{prop.maxLength}} characters at maximum</strong>
           <strong *ngIf="control.hasError('email')">Email is not valud</strong>
-        </mat-error>
-      </ng-template>
-
+      </mat-error>
     </mat-form-field>
   </ng-container>
   <ng-container *ngSwitchCase="'autocomplete'">
