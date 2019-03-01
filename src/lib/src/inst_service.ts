@@ -276,14 +276,14 @@ export abstract class SingleTargetContextProcessor extends ContextProcessor {
       ctx: DynamicFieldContext, inst: {}, entity: Entity,
       propValueSetterGetter: PropValueSetterGetter,
       comps: DynamicFieldPropertyComponent[]): Subscription|undefined {
-    const srcComp = this.findComponent(ctx.srcProp, comps);
-    const targetComp = this.findComponent(ctx.target, comps);
+    const srcComp = this.findComponent(ctx['srcProp'], comps);
+    const targetComp = this.findComponent(ctx['target'], comps);
     if (!targetComp) {
       return;
     }
 
-    const srcProp = entity.findProp(ctx.srcProp);
-    const targetProp = entity.findProp(ctx.target);
+    const srcProp = entity.findProp(ctx['srcProp']);
+    const targetProp = entity.findProp(ctx['target']);
     const valueChangeFunction = this.getValueChangeFunction(
         ctx, inst, entity, propValueSetterGetter, comps, srcProp, targetProp,
         targetComp);
@@ -476,8 +476,8 @@ export abstract class SegmentedContextProcessor extends ContextProcessor {
       ctx: DynamicFieldContext, inst: {}, entity: Entity,
       propValueSetterGetter: PropValueSetterGetter,
       comps: DynamicFieldPropertyComponent[]): Subscription|undefined {
-    const srcComp = this.findComponent(ctx.srcProp, comps);
-    const srcProp = entity.findProp(ctx.srcProp);
+    const srcComp = this.findComponent(ctx['srcProp'], comps);
+    const srcProp = entity.findProp(ctx['srcProp']);
 
     const valueChangeFunction = this.getValueChangeFunction(
         ctx, inst, entity, propValueSetterGetter, comps, srcProp);
