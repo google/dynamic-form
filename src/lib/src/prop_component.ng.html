@@ -9,7 +9,7 @@
         </span>
         <span aria-hidden="true" class="required" *ngIf="required">*</span>
       </mat-label>
-      <mat-error *ngIf="control.dirty && control.invalid">
+      <mat-error *ngIf="control.touched && control.invalid">
           <strong *ngIf="control.hasError('pattern')">{{prop.regExpErrorMsg?prop.regExpErrorMsg:"Value must match pattern: "+prop.regExp}}</strong>
           <strong *ngIf="control.hasError('required')">{{prop.name}} is a required field</strong>
           <strong *ngIf="control.hasError('min')">minimal allowed value: {{prop.min}}</strong>
@@ -33,10 +33,10 @@
           {{ lookup.description }}
         </mat-option>
       </mat-autocomplete>
-      <mat-error *ngIf="control.dirty && control.hasError('required')">
+      <mat-error *ngIf="control.touched && control.hasError('required')">
         <strong>{{prop.name}} is a required field</strong>
       </mat-error>
-      <mat-error *ngIf="control.dirty && control.hasError('requiredSelect')">
+      <mat-error *ngIf="control.touched && control.hasError('requiredSelect')">
         <strong>Please select a value from dropdown</strong>
       </mat-error>
     </mat-form-field>
@@ -88,7 +88,7 @@
         {{lookupValue.description}}
       </option>
     </select>
-    <mat-error *ngIf="control.dirty && control.hasError('required')">
+    <mat-error *ngIf="control.touched && control.hasError('required')">
       <strong>{{prop.name}} is a required field</strong>
     </mat-error>
   </ng-container>
