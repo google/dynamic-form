@@ -54,7 +54,8 @@ export class InstEditorComponent implements OnInit {
   @ViewChildren(DynamicFieldPropertyComponent)
   propComps: QueryList<DynamicFieldPropertyComponent>;
 
-  @ViewChild(EntityContextDirective, {static:false})
+    //TODO @ViewChild(EntityContextDirective, {static:false})
+  @ViewChild(EntityContextDirective)
   entityContextDirective: EntityContextDirective;
 
   /**
