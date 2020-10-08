@@ -32,7 +32,7 @@ import {Book} from './book_sample';
   selector: 'book',
   templateUrl: './book.ng.html',
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
   @ViewChildren(DynamicFieldPropertyComponent)
   bookPropComps: QueryList<DynamicFieldPropertyComponent>;
 
