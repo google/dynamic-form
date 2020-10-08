@@ -16,7 +16,8 @@
 
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {MatButtonModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import {RouterModule} from '@angular/router';
 
 import {DynamicFormModule} from '../../../lib/src/dynamic_form_module';
