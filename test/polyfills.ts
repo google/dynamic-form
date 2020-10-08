@@ -43,7 +43,10 @@
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es7/reflect';
+// Angular CLI 8.0+ manages the required Angular polyfills directly and
+// projects will not require a direct dependency on core-js (assuming an
+// application does not manually include additional core-js polyfills).
+// import 'core-js/es7/reflect';
 
 
 /**
