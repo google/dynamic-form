@@ -102,6 +102,9 @@ export class EntityContextDirective implements OnInit, AfterContentInit,
       if (dfComp.inst !== this.inst) {
         continue;
       }
+      if (this.controlInst.hasOwnProperty(dfComp.prop.name)) {
+        return;
+      }
       Object.defineProperty(this.controlInst, dfComp.prop.name, {
         enumerable: true,
         configurable: false,
